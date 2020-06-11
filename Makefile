@@ -4,9 +4,11 @@ CFLAGS += -Wall -Wextra -Werror -O0 -g
 
 all: ctypes-test.so
 
-ctypes-test.so: ctypes-test.c
+ctypes-test.so: ctypes-test.c .FORCED
 	$(CC) $< $(CFLAGS) -fPIC -shared -o $@
 	set -e; ./ctypes-test.py
 
 clean:
 	rm -f ctypes-test.so
+
+.PHONY: .FORCED
